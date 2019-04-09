@@ -1,0 +1,35 @@
+.sideMenu{padding: 0px;margin: 0px }
+.sideMenu h3{height: 32px;line-height: 32px;color: #aeb2b7;cursor: pointer;padding: 0 0 0 10px;margin: 20px 0 0 0;border-top-left-radius: 3px;border-top-right-radius: 3px;font-weight: 400;width: 100% }
+.sideMenu h3 em{float: right;display: block;width: 40px;height: 32px;background: url(../i/icoAdd.png) 16px 12px no-repeat;cursor: pointer}
+.sideMenu h3.on em{background-position: 16px -57px}
+.sideMenu h3.on{color: #ff6c60;background: #35404d}
+.sideMenu h3 a{color: #aeb2b7 }
+.sideMenu ul{line-height: 24px;color: #999;display: none;/* 默认都隐藏 */ ;background: #35404d;border-bottom-right-radius: 3px;border-bottom-left-radius: 3px;padding: 0px 0 10px 0;margin: 0px }
+.sideMenu li{text-indent: 25px;width: 100%}
+.sideMenu li{text-indent: 25px;width: 100%}
+.sideMenu li a{color: #aeb2b7}
+.sideMenu li a:hover{color: #f8675e}
+
+.admin-main{background: #2a3542}
+.admin-sidebar{width: 210px;min-height: 100%;padding: 10px;font-size: 1.2rem;  left: 0; top: 50px;}
+.admin-sidebar-list{margin-bottom: 0}
+.admin-sidebar-list li a{color: #fff;padding-left: 24px}
+.admin-sidebar-list li:first-child{border-top: none}
+.admin-sidebar-sub{margin-top: 0;margin-bottom: 0;box-shadow: 0 16px 8px -15px #e2e2e2 inset;background: #ececec;font-size: 12px }
+.admin-sidebar-sub li:first-child{border-top: 1px solid #dedede}
+.admin-sidebar-panel{margin: 10px}
+
+@media only screen and (min-width: 641px){.admin-sidebar{display: block;position: fixed}
+.admin-offcanvas-bar{position: static;width: auto;background: none;-webkit-transform: translate3d(0, 0, 0);-ms-transform: translate3d(0, 0, 0);transform: translate3d(0, 0, 0)}
+.admin-offcanvas-bar:after{content: none}
+}
+
+@media only screen and (max-width: 640px){.admin-sidebar{width: inherit}
+.admin-offcanvas-bar{background: #f3f3f3}
+.admin-offcanvas-bar:after{background: #BABABA}
+.admin-sidebar-list a:hover, .admin-sidebar-list a:active{-webkit-transition: background-color .3s ease;-moz-transition: background-color .3s ease;-ms-transition: background-color .3s ease;-o-transition: background-color .3s ease;transition: background-color .3s ease;background: #E4E4E4}
+.admin-content-list li{padding: 10px;border-width: 1px 0;margin-top: -1px}
+.admin-content-list li:first-child{border-top: none}
+.admin-content-list li:last-child{border-bottom: none}
+.admin-form-text{text-align: left !important}
+}

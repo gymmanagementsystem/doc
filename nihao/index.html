@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>左侧管理</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   
+    <link rel="stylesheet" href="E:/nihao/assets/css/admin.css">
+        <script src="E:/nihao/assets/js/jquery.min.js"></script>
+        <script src="E:/nihao/assets/js/app.js"></script>
+</head>
+
+<body>
+    <div class="nav-navicon admin-main admin-sidebar" style="font-size:8pt">
+        <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：清风抚雪</div>
+        <div class="sideMenu">
+            <h3 class="am-icon-users"><em></em> <a href="#">会员管理</a></h3>
+            <ul>
+                <li>会员列表 </li>
+                <li>开户操作</li>
+                <li>会员管理</li>
+                <li>查看来访信息</li>
+                <li>来访、体验登记</li>
+            </ul>
+            <h3 class="am-icon-cart-plus"><em></em> <a href="#">商品管理</a></h3>
+            <ul>
+                <li><a href="">商品列表</a></li>
+                <li class="func">添加新商品</li>
+                <li>商品回收站</li>
+            </ul>
+            <h3 class="am-icon-flag"><em></em> <a href="#">统计报表</a></h3>
+            <ul>
+                <li><a href="">会籍顾问业绩</a></li>
+                <li class="func">营业额分析</li>
+                <li>衣柜使用情况 </li>
+                <li>会员来访频率</li>
+            </ul>
+            </ul>
+
+            <h3 class="am-icon-gears"><em></em> <a href="#">人事管理</a></h3>
+            <ul>
+                <li>部门管理</li>
+                <li>员工管理</li>
+
+            </ul>
+            <h3 class="am-icon-gears"><em></em> <a href="#">衣柜管理</a></h3>
+            <ul>
+                <li>衣柜使用情况</li>
+                <li>衣柜出租记录</li>
+                <li>退柜</li>
+            </ul>
+            <h3 class="am-icon-gears"><em></em> <a href="#">课程管理</a></h3>
+            <ul>
+                <li>课程设计</li>
+                <li>会员购课</li>
+                <li>购课记录</li>
+            </ul>
+            <h3 class="am-icon-gears"><em></em> <a href="#">系统设置</a></h3>
+            <ul>
+                <li>通知公告</li>
+                <li>员工管理</li>
+                <li>角色管理</li>
+                <li>衣柜管理</li>
+            </ul>
+        </div>
+        <!-- sideMenu End -->
+        <script type="text/javascript">
+            jQuery(".sideMenu").slide({
+                titCell: "h3", //鼠标触发对象
+                targetCell: "ul", //与titCell一一对应，第n个titCell控制第n个targetCell的显示隐藏
+                effect: "slideDown", //targetCell下拉效果
+                delayTime: 800, //效果时间
+                triggerTime: 150, //鼠标延迟触发时间（默认150）
+                defaultPlay: true,//默认是否执行效果（默认true）
+                returnDefault: true //鼠标从.sideMen移走后返回默认状态（默认false）
+            });
+        </script>
+    </div>
+    <script src="E:/nihao/assets/js/amazeui.min.js"></script>
+    
+</body>
+
+</html>
