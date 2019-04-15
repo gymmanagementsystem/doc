@@ -1,4 +1,4 @@
- 	技术选型
+  	技术选型
 	SpringBoot 、Mybatis [PageHelper]、SpringBoot整合图片上传
 	AngularCLI 、Boostrap、echarts图表、RestFul API风格
 	Druid连接池(阿里巴巴)、MySQL
