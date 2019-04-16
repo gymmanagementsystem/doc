@@ -8,5 +8,6 @@ public class WardrobeRecord {
     private double cost;
     private Date quantity;
     private int state;
+    private String remark;
     
 }
