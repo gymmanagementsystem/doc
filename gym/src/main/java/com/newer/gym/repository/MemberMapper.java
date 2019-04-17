@@ -4,10 +4,7 @@ import com.newer.gym.bean.CardType;
 import com.newer.gym.bean.Experience;
 import com.newer.gym.bean.Member;
 import com.newer.gym.bean.MemberGet;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -23,11 +20,11 @@ public interface MemberMapper {
     * @author      HiFiYi
     * @date        2019/4/17 9:14
     */
-    @Insert("insert into member_card(name,cardtype_id,sex,opentime,closetime,balance,tel" +
-            ",state,birthday,coach,wardrobe_id,counselor,identify,idcard,address,remark) " +
-            "values (#{name},#{cardType.id},#{sex},#{opentime},#{closetime},#{balance}," +
-            "#{tel},#{state},#{birthday},#{coach.id},#{wardrobe.id},#{counselor.id}," +
-            "#{identify},#{idcard},#{address},#{remark}})")
+    @Insert("insert into member_card(name,cardtype_id,sex,closetime,balance,tel" +
+            ",state,birthday,coach,counselor,identify,idcard,address,remark) " +
+            "values (#{name},#{cardType.id},#{sex},#{closeTime},#{balance}," +
+            "#{tel},#{state},#{birthday},#{coach.id},#{counselor.id}," +
+            "#{identify},#{idCard},#{address},#{remark})")
     void insertMember(Member member);
 
     /**
@@ -35,7 +32,11 @@ public interface MemberMapper {
     * @author      HiFiYi
     * @date        2019/4/17 9:14
     */
-    @Update("update member_card set ")
+    @Update("update member_card set name=#{name},cardtype_id=#{cardType.id},sex=#{sex}," +
+            "opentime=#{openTime},closetime=#{closeTime},balance=#{balance},tel=#{tel}"+
+           ",state=#{state},birthday=#{birthday},coach=#{coach.id},wardrobe_id=#{wardrobe.id}" +
+            ",counselor=#{counselor.id},identify=#{identify},idcard=#{idCard}," +
+            "address=#{address},remark=#{remark} where id=#{id}")
     void updateMember(Member member);
 
     /**
@@ -43,20 +44,28 @@ public interface MemberMapper {
     * @author      HiFiYi
     * @date        2019/4/17 9:15
     */
-    void deleteMember(int memberId);
+    @Delete("delete from member_card where id =#{memberId}")
+    void deleteMember(@Param("memberId") int memberId);
 
     /**
     * 方法实现说明    查询单个会员信息
     * @author      HiFiYi
+    * @return
     * @date        2019/4/17 9:15
     */
-    @Select("select * from member_card")
+    @Select("select * from member_card where id=#{memberId}")
+    @Results({@Result(column ="coach",property = "coach",one = @One(select = "com.newer.gym.repository.AnalysisMapper.getStaff")),
+              @Result(column = "counselor",property = "counselor",one = @One(select = "com.newer.gym.repository.AnalysisMapper.getStaff")),
+              @Result(column = "wardrobe_id",property = "wardrobe",one = @One(select = "com.newer.gym.repository.WardrobeMapper.getWardrobe")),
+              @Result(column = "opentime",property = "openTime"),@Result(column = "closetime",property = "closeTime"),
+              @Result(column = "idcard",property = "idCard"),@Result(column = "cardtype_id",property = "cardTppe",one = @One(select = "selectCardType"))})
     Member selectMember(int memberId);
 
     /**
-    * 方法实现说明
+    * 方法实现说明    分页
      *  根据页码，页面容量查出多个会员信息
     * @author      HiFiYi
+    * @return
     * @date        2019/4/17 9:16
     */
     List<Member> selectMembers(Member member, int currentPage, int pageSize);
@@ -66,6 +75,7 @@ public interface MemberMapper {
     * @author      HiFiYi
     * @date        2019/4/17 9:22
     */
+    @Insert("insert into member_get(member_cardid,time,remark) values (#{member.id},#{time},#{remark})")
     void insertMemberGet(MemberGet memberGet);
 
     /**
@@ -73,6 +83,8 @@ public interface MemberMapper {
     * @author      HiFiYi
     * @date        2019/4/17 9:23
     */
+    @Insert("insert into experience(username,contact,address,sex,time,remark) values (#{name}," +
+            "#{contact},#{address},#{sex},#{time},#{remark})")
     void insertExperience(Experience experience);
 
     /**
@@ -87,6 +99,7 @@ public interface MemberMapper {
     * @author      HiFiYi
     * @date        2019/4/17 9:24
     */
+    @Insert("insert into card_type(name,price,remark) values (#{name},#{price},#{remark})")
     void insertCardType(CardType cardType);
 
     /**
@@ -94,6 +107,7 @@ public interface MemberMapper {
     * @author      HiFiYi
     * @date        2019/4/17 9:25
     */
+    @Update("update card_type set name=#{name},price=#{price},remark=#{remark} ")
     void updateCardType(CardType cardType);
 
     /**
@@ -101,11 +115,13 @@ public interface MemberMapper {
     * @author      HiFiYi
     * @date        2019/4/17 9:25
     */
-    void deleteCardType(int cardTypeId);
+    @Delete("delete from card_type where id =#{cardTypeId}")
+    void deleteCardType(@Param("cardTypeId") int cardTypeId);
 
     /**
      * 方法实现说明    获得多个会员卡类型
      * @author      HiFiYi
+     * @return      会员卡类型实体的集合
      * @date        2019/4/17 9:25
      */
     List<CardType> selectCardTypes(CardType cardType, int currentPage, int pageSize);
@@ -113,14 +129,17 @@ public interface MemberMapper {
     /**
     * 方法实现说明    获得单个会员卡类型信息
     * @author      HiFiYi
+    * @return      一个会员卡类型实体
     * @date        2019/4/17 9:27
     */
-    CardType selectCardTypes(int cardTypeId);
+    @Select("select * from card_type where id=#{cardTypeId}")
+    CardType selectCardType(@Param("cardTypeId") int cardTypeId);
 
     /**
     * 方法实现说明    会员卡充值
     * @author      HiFiYi
     * @date        2019/4/17 9:27
     */
-    void addBanlence(int memberId, int cost);
+    @Update("update member_card set balance=balance+#{cost} where id=#{memberId}")
+    void addBanlence(@Param("memberId") int memberId,@Param("cost") int cost);
 }
