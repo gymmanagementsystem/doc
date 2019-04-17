@@ -73,14 +73,14 @@ public interface MemberMapper {
     * @author      HiFiYi
     * @date        2019/4/17 9:23
     */
-    void insertExperience (Experience experience);
+    void insertExperience(Experience experience);
 
     /**
     * 方法实现说明    多个体验记录展示
     * @author      HiFiYi
     * @date        2019/4/17 9:23
     */
-    List<Experience> selectExperiences(Experience experience,int curremtPage,int pageSize);
+    List<Experience> selectExperiences(Experience experience, int curremtPage, int pageSize);
 
     /**
     * 方法实现说明    添加会员卡类型
@@ -108,7 +108,7 @@ public interface MemberMapper {
      * @author      HiFiYi
      * @date        2019/4/17 9:25
      */
-    List<CardType> selectCardTypes(CardType cardType,int currentPage,int pageSize);
+    List<CardType> selectCardTypes(CardType cardType, int currentPage, int pageSize);
 
     /**
     * 方法实现说明    获得单个会员卡类型信息
@@ -122,5 +122,5 @@ public interface MemberMapper {
     * @author      HiFiYi
     * @date        2019/4/17 9:27
     */
-    void addBanlence(int memberId,int cost);
+    void addBanlence(int memberId, int cost);
 }
