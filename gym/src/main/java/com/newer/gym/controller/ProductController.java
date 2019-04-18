@@ -61,7 +61,7 @@ public class ProductController {
         return productService.getCategorys();
     }
 
-    @
+
     public Category getCategory(int categoryId) {
         return productService.getCategory(categoryId);
     }
