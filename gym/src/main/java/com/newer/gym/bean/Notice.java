@@ -1,5 +1,6 @@
 package com.newer.gym.bean;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ public class Notice {
     private int id;//通知编号    notice_id int
     private String type;//通知类型	notice_type	char
     private String content;//通知内容	notice_content	text
-    private int time;   //发布时间	notice_time	datetime
+    private Date time;   //发布时间	notice_time	datetime
     private List<Member> member;//接收通知对象	notice_member	int
     private String remark;//备注 remark
 
@@ -39,11 +40,11 @@ public class Notice {
         this.content = content;
     }
 
-    public int getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
@@ -64,7 +65,7 @@ public class Notice {
     }
 
     public Notice(int id, String type, String content,
-                  int time, List<Member> member, String remark) {
+                  Date time, List<Member> member, String remark) {
         this.id = id;
         this.type = type;
         this.content = content;
@@ -73,7 +74,27 @@ public class Notice {
         this.remark = remark;
     }
 
+    public Notice( String type, String content,
+                 List<Member> member, String remark) {
+        this.type = type;
+        this.content = content;
+        this.member = member;
+        this.remark = remark;
+    }
+
     public Notice() {
         super();
+    }
+
+    @Override
+    public String toString() {
+        return "Notice{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", content='" + content + '\'' +
+                ", time=" + time +
+                ", member=" + member +
+                ", remark='" + remark + '\'' +
+                '}';
     }
 }
