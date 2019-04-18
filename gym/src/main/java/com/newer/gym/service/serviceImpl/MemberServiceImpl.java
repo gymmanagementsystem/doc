@@ -80,8 +80,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<CardType> getCardTypes(CardType cardType, int currentPage, int pageSize) {
-        return null;
+    public List<CardType> getCardTypes() {
+        return memberMapper.selectCardTypes();
     }
 
     @Override

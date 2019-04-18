@@ -6,7 +6,10 @@ import com.newer.gym.bean.Member;
 import com.newer.gym.bean.MemberGet;
 import com.newer.gym.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -15,81 +18,83 @@ import java.util.List;
 * @Author:         HiFiYi
 * @CreateDate:     2019/4/17 15:19
 */
-@Controller("/member/1")
+@RestController
+@CrossOrigin
 public class MemberController{
     @Autowired
     MemberService memberService;
-
-    public void addMember(Member member) {
+    @GetMapping("/member/addMember")
+    public void addMember(@RequestBody Member member) {
         memberService.addMember(member);
     }
 
-
-    public void editorMember(Member member) {
+    @GetMapping("/member/editorMember")
+    public void editorMember(@RequestBody Member member) {
         memberService.editorMember(member);
     }
 
-
+    @GetMapping("/member/removeMember")
     public void removeMember(int memberId) {
         memberService.removeMember(memberId);
     }
 
-
-    public List<Member> getMembers(Member member, int currentPage, int pageSize) {
+    @GetMapping("/member/getMembers")
+    public List<Member> getMembers(@RequestBody Member member, int currentPage, int pageSize) {
         return memberService.getMembers(member,currentPage,pageSize);
     }
 
-
+    @GetMapping("/member/getMember")
     public Member getMember(int memberId) {
         return memberService.getMember(memberId);
     }
 
-
-    public void addMemberGet(MemberGet memberGet) {
+    @GetMapping("/member/addMemberGet")
+    public void addMemberGet(@RequestBody MemberGet memberGet) {
         memberService.addMemberGet(memberGet);
     }
 
-
-    public List<MemberGet> getMemberGets(MemberGet memberGet, int curremtPage, int pageSize) {
+    @GetMapping("/member/getMemberGets")
+    public List<MemberGet> getMemberGets(@RequestBody MemberGet memberGet, int curremtPage, int pageSize) {
         return memberService.getMemberGets(memberGet,curremtPage,pageSize);
     }
 
-
-    public void addExperience(Experience experience) {
+    @GetMapping("/member/addExperience")
+    public void addExperience(@RequestBody Experience experience) {
         memberService.addExperience(experience);
     }
 
-
-    public List<Experience> getExperiences(Experience experience, int curremtPage, int pageSize) {
+    @GetMapping("/member/getExperiences")
+    public List<Experience> getExperiences (@RequestBody  Experience experience, int curremtPage, int pageSize) {
         return memberService.getExperiences(experience,curremtPage,pageSize);
     }
 
-
-    public void addCardType(CardType cardType) {
+    @GetMapping("/member/addCardType")
+    public void addCardType(@RequestBody CardType cardType) {
         memberService.addCardType(cardType);
     }
 
-
-    public void editorCardType(CardType cardType) {
+    @GetMapping("/member/editorCardType")
+    public void editorCardType(@RequestBody CardType cardType) {
         memberService.editorCardType(cardType);
     }
 
-
+    @GetMapping("/member/removeCardType")
     public void removeCardType(int cardTypeId) {
         memberService.removeCardType(cardTypeId);
     }
 
-
-    public List<CardType> getCardTypes(CardType cardType, int currentPage, int pageSize) {
-        return memberService.getCardTypes(cardType,currentPage,pageSize);
+    @GetMapping("/member/getCardTypes")
+    public List<CardType> getCardTypes() {
+        List<CardType> list=memberService.getCardTypes();
+        return list;
     }
 
-
+    @GetMapping("/member/getCardType")
     public CardType getCardType(int cardTypeId) {
         return memberService.getCardType(cardTypeId);
     }
 
-
+    @GetMapping("/member/addBanlence")
     public void addBanlence(int memberId, int cost) {
         memberService.addBanlence(memberId,cost);
     }

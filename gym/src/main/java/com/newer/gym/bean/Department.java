@@ -17,6 +17,18 @@ public class Department {
     }
 
     @Override
+    public String toString() {
+
+        return "Department{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", info='" + info + '\'' +
+                ", staffs=" + staffs +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return super.hashCode();
     }

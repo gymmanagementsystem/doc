@@ -17,9 +17,26 @@ public class Staff {
     private String job;     //员工职位	staff_job	varchar
     private String phone;  //联系方式	staff_phone	char
     private Department department;//所属部门id	department_id	int
+    private String remark;      // 备注
 
     public Staff() {
         super();
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sex=" + sex +
+                ", birthday=" + birthday +
+                ", time=" + time +
+                ", address='" + address + '\'' +
+                ", job='" + job + '\'' +
+                ", phone='" + phone + '\'' +
+                ", department=" + department +
+                ", remark='" + remark + '\'' +
+                '}';
     }
 
     public int getId() {
@@ -30,12 +47,12 @@ public class Staff {
         this.id = id;
     }
 
-    public String getAnme() {
+    public String getName() {
         return name;
     }
 
-    public void setAnme(String anme) {
-        this.name = anme;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getSex() {
@@ -94,7 +111,15 @@ public class Staff {
         this.department = department;
     }
 
-    public Staff(int id, String name, int sex, Date birthday, Date time, String address, String job, String phone, Department department) {
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Staff(int id, String name, int sex, Date birthday, Date time, String address, String job, String phone, Department department, String remark) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -104,5 +129,6 @@ public class Staff {
         this.job = job;
         this.phone = phone;
         this.department = department;
+        this.remark = remark;
     }
 }

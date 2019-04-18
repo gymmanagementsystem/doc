@@ -36,7 +36,7 @@ public interface ProductService {
     void removeCategory (int categoryId);
 
 
-    List<Category> getCategorys (Category category,int currentPage,int pageSize);
+    List<Category> getCategorys ();
 
 
     Category getCategory (int categoryId);

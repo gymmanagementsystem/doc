@@ -2,10 +2,12 @@ package com.newer.gym.controller;
 
 import com.newer.gym.bean.Department;
 import com.newer.gym.bean.Staff;
-import com.newer.gym.repository.PersonnelMapper;
 import com.newer.gym.service.PersonnelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -14,56 +16,57 @@ import java.util.List;
 * @Author:         HiFiYi
 * @CreateDate:     2019/4/17 15:20
 */
-@Controller("/personenel/1")
+@RestController
+@CrossOrigin
 public class PersonnelController{
 
     @Autowired
     PersonnelService personnelService;
-
-    public void addStaff(Staff staff) {
+    @GetMapping("/personnel/addStaff")
+    public void addStaff(@RequestBody Staff staff) {
         personnelService.addStaff(staff);
     }
 
-
-    public void editorStaff(Staff staff) {
+    @GetMapping("/personnel/editorStaff")
+    public void editorStaff(@RequestBody Staff staff) {
         personnelService.editorStaff(staff);
     }
 
-
+    @GetMapping("/personnel/removeStaff")
     public void removeStaff(int staffId) {
         personnelService.removeStaff(staffId);
     }
 
-
-    public List<Staff> getStaffs(Staff staff, int currentPage, int pageSize) {
+    @GetMapping("/personnel/getStaffs")
+    public List<Staff> getStaffs(@RequestBody Staff staff, int currentPage, int pageSize) {
         return personnelService.getStaffs(staff,currentPage,pageSize);
     }
 
-
+    @GetMapping("/personnel/getStaff")
     public Staff getStaff(int staffId) {
         return personnelService.getStaff(staffId);
     }
 
-
-    public void addDepartment(Department department) {
+    @GetMapping("/personnel/addDepartment")
+    public void addDepartment(@RequestBody Department department) {
         personnelService.addDepartment(department);
     }
-
-    public void editorDepartment(Department department) {
+    @GetMapping("/personnel/editorDepartment")
+    public void editorDepartment(@RequestBody Department department) {
         personnelService.editorDepartment(department);
     }
 
-
+    @GetMapping("/personnel/removeDepartment")
     public void removeDepartment(int departmentId) {
         personnelService.removeDepartment(departmentId);
     }
 
-
-    public List<Department> getDepartments(Department department, int currentPage, int pageSize) {
-        return personnelService.getDepartments(department,currentPage,pageSize);
+    @GetMapping("/personnel/getDepartments")
+    public List<Department> getDepartments() {
+        return personnelService.getDepartments();
     }
 
-
+    @GetMapping("/personnel/getDepartment")
     public Department getDepartment(int departmentId) {
         return personnelService.getDepartment(departmentId);
     }

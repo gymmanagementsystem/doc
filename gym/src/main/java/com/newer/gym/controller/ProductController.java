@@ -57,11 +57,11 @@ public class ProductController {
     }
 
 
-    public List<Category> getCategorys(Category category, int currentPage, int pageSize) {
-        return productService.getCategorys(category,currentPage,pageSize);
+    public List<Category> getCategorys() {
+        return productService.getCategorys();
     }
 
-
+    @
     public Category getCategory(int categoryId) {
         return productService.getCategory(categoryId);
     }

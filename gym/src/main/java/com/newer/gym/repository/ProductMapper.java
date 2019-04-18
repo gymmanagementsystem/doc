@@ -28,7 +28,7 @@ public interface ProductMapper {
      * @date        2019/4/17 14:12
      */
     @Update("update product set name=#{name},images=#{images},price=#{price}," +
-            "quantity=#{quantity},category_id=#{category.id},remark=#{remark}")
+            "quantity=#{quantity},category_id=#{category.id},remark=#{remark} where id=#{id}")
     void updateProduct (Product product);
 
     /**
@@ -54,7 +54,7 @@ public interface ProductMapper {
      * @date        2019/4/17 14:14
      */
     @Select("select * from product where id=#{id}")
-    @Results({@Result(column ="category_id",property = "category",one = @One(select = "getCategory"))})
+    @Results({@Result(column ="category_id",property = "category",one = @One(select = "selectCategory"))})
     Product selectProduct (int productId);
 
     /**
@@ -62,7 +62,7 @@ public interface ProductMapper {
      * @author      HiFiYi
      * @date        2019/4/17 14:12
      */
-    @Insert("insert into category(name,info,remark) values #{name},#{info},#{remark}")
+    @Insert("insert into category(name,info,remark) values (#{name},#{info},#{remark})")
     void insertCategory(Category category);
 
     /**
@@ -87,7 +87,8 @@ public interface ProductMapper {
     * @return
     * @date        2019/4/17 14:14
     */
-    List<Category> selectCategorys (Category category, int currentPage, int pageSize);
+    @Select("select * from category")
+    List<Category> selectCategorys ();
 
     /**
      * 方法实现说明
@@ -98,8 +99,9 @@ public interface ProductMapper {
     @Select("select * from category where id =#{id}")
     Category selectCategory (@Param("id") int categoryId);
 
-
-
+    @Select("select * from product where category_id=#{id}")
+    @Results(@Result(column = "category_id",property = "category",one = @One(select = "selectCategory")))
+    List<Product> selectProductByCategoryId(@Param("id") int id);
 
 
 
