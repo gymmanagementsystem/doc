@@ -7,9 +7,9 @@ package com.newer.gym.bean;
 */
 public class Admin {
     private int id;         // 管理员编号
-    private char password;  // 密码
+    private String password;  // 密码
     private String name;    // 名称
-    private char contact;   // 联系方式
+    private String contact;   // 联系方式
     private int state;      // 状态
     private String remark;  // 备注
 
@@ -37,11 +37,11 @@ public class Admin {
         this.id = id;
     }
 
-    public char getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(char password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -53,11 +53,11 @@ public class Admin {
         this.name = name;
     }
 
-    public char getContact() {
+    public String getContact() {
         return contact;
     }
 
-    public void setContact(char contact) {
+    public void setContact(String contact) {
         this.contact = contact;
     }
 
@@ -77,7 +77,7 @@ public class Admin {
         this.remark = remark;
     }
 
-    public Admin(int id, char password, String name, char contact, int state, String remark) {
+    public Admin(int id, String password, String name, String contact, int state, String remark) {
         this.id = id;
         this.password = password;
         this.name = name;
@@ -85,4 +85,12 @@ public class Admin {
         this.state = state;
         this.remark = remark;
     }
+    public Admin( String password, String name, String contact, int state, String remark) {
+        this.password = password;
+        this.name = name;
+        this.contact = contact;
+        this.state = state;
+        this.remark = remark;
+    }
+
 }

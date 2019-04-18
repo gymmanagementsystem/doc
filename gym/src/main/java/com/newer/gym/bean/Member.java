@@ -15,14 +15,14 @@ public class Member {
     private Date openTime;          // 开卡时间     --openTime
     private Date closeTime;         // 到期时间     --closeTime
     private double balance;         // 会员卡余额   --balance
-    private char tel;               // 电话号码     --tel
+    private String tel;               // 电话号码     --tel
     private int state;              // 会员状态     --state
     private Date birthday;          // 会员生日     --birthday
     private Staff coach;            // 教练         --coach
     private Wardrobe wardrobe;      // 衣柜         --wardrobe_id
     private Staff counselor;        // 会籍顾问     --counselor
     private int identify;           // 证件类型     --identify
-    private char idCard;            // 证件编号     --idCard
+    private String idCard;            // 证件编号     --idCard
     private String address;         // 联系地址     --address
     private String remark;          //备注          --remark
 
@@ -55,9 +55,9 @@ public class Member {
 
     public Member(int id, String name, CardType cardType,
                   int sex, Date openTime, Date closeTime,
-                  double balance, char tel, int state,
+                  double balance, String tel, int state,
                   Date birthday, Staff coach, Wardrobe wardrobe,
-                  Staff counselor, int identify, char idCard,
+                  Staff counselor, int identify, String idCard,
                   String address, String remark) {
         this.id = id;
         this.name = name;
@@ -134,11 +134,11 @@ public class Member {
         this.balance = balance;
     }
 
-    public char getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(char tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 
@@ -190,11 +190,11 @@ public class Member {
         this.identify = identify;
     }
 
-    public char getIdCard() {
+    public String getIdCard() {
         return idCard;
     }
 
-    public void setIdCard(char idCard) {
+    public void setIdCard(String idCard) {
         this.idCard = idCard;
     }
 

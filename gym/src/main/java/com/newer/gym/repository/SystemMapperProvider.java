@@ -6,31 +6,29 @@ import com.newer.gym.bean.Member;
 import com.newer.gym.bean.Notice;
 import org.apache.ibatis.jdbc.SQL;
 
+import java.sql.Date;
 import java.util.Map;
 
 public class SystemMapperProvider {
     /**
-     * 根据通知类的属性通知id，通知时间，通知属性等条件生成查询notice表的sql语句
+     * 根据时间和类型筛选,返回通知id和通知内的member字段数据
      *
-     * @param notice
+     * @param
      * @return String
      * @throws
      * @author pjun
      * @date 2019-04-17 14:19
      */
-    public String selectNotices(Notice notice) {
+    public String selectMembers(Map<String, Object> map) {
         String sql = new SQL() {
             {
-                SELECT("*");
-                FROM("member");
-                if (notice.getId() != 0) {
-                    WHERE("id=#{id}");
+                SELECT("id，member");
+                FROM("notice");
+                if (map.get("type")!=null) {
+                    WHERE("type='#{type}'");
                 }
-                if (notice.getType() != null) {
-                    WHERE("type=#{type}");
-                }
-                if (notice.getTime() != null) {
-                    WHERE("time=#{time}");
+                if (map.get("date")!=null) {
+                    WHERE("date<'#{date}'");
                 }
             }
         }.toString();
@@ -39,27 +37,24 @@ public class SystemMapperProvider {
     }
 
     /**
-     * 根据通知类的属性通知id，通知时间，通知属性等条件生成查询notice表的数据数量的sql语句
+     * 根据条件查询获得符合条件的notice数量
      *
-     * @param notice
+     * @param
      * @return
      * @throws
      * @author pjun
      * @date 2019-04-17 14:35
      */
-    public String selectNoticesCount(Notice notice) {
+    public String selectNoticesCount(Map<String, Object> map) {
         String sql = new SQL() {
             {
                 SELECT("count(*)");
-                FROM("member");
-                if (notice.getId() != 0) {
-                    WHERE("id=#{id}");
+                FROM("notice");
+                if (map.get("type")!=null) {
+                    WHERE("type='#{type}'");
                 }
-                if (notice.getType() != null) {
-                    WHERE("type=#{type}");
-                }
-                if (notice.getTime() != null) {
-                    WHERE("time=#{time}");
+                if (map.get("date")!=null) {
+                    WHERE("date<'#{date}'");
                 }
             }
         }.toString();
@@ -68,7 +63,7 @@ public class SystemMapperProvider {
     }
 
     /**
-     * 根据日志类的条件生成查询logger表的sql语句
+     * 根据日志类的条件查询出符合条件的logger
      *
      * @param map
      * @return
@@ -97,7 +92,7 @@ public class SystemMapperProvider {
     }
 
     /**
-     * 据日志类的条件生成查询logger表内数据的数量的sql语句
+     * 根据日志类的条件查询出符合条件的logger数量
      *
      * @param map
      * @return
@@ -105,7 +100,7 @@ public class SystemMapperProvider {
      * @author pjun
      * @date 2019-04-17 15:38
      */
-    public String selectloggersCount(Map<String, Object> map) {
+    public String selectLoggersCount(Map<String, Object> map) {
         String sql = new SQL() {
             {
                 SELECT("count(*)");

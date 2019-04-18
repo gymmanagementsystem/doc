@@ -74,6 +74,14 @@ public class Notice {
         this.remark = remark;
     }
 
+    public Notice( String type, String content,
+                 List<Member> member, String remark) {
+        this.type = type;
+        this.content = content;
+        this.member = member;
+        this.remark = remark;
+    }
+
     public Notice() {
         super();
     }
