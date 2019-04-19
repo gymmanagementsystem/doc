@@ -36,7 +36,7 @@ public interface PersonnelService {
     void removeDepartment(int departmentId);
 
 
-    List<Department> getDepartments(Department department,int currentPage,int pageSize);
+    List<Department> getDepartments();
 
 
     Department getDepartment (int departmentId);

@@ -58,8 +58,13 @@ public class PersonnelServiceImpl implements PersonnelService {
     }
 
     @Override
-    public List<Department> getDepartments(Department department, int currentPage, int pageSize) {
-        return null;
+    public List<Department> getDepartments() {
+        List<Department> list=personnelMapper.selectDepartments();
+        for (Department d:list
+             ) {
+            d.setStaffs(personnelMapper.selectStaffsByDepartmentId(d.getId()));
+        }
+        return list;
     }
 
     @Override

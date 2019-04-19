@@ -50,7 +50,7 @@ public interface PersonnelMapper {
      * @date        2019/4/17 11:38
      */
     @Select("select * from staff where id=#{id}")
-    @Results({@Result(column ="department_id",property = "department",one = @One(select = "getDepartment"))})
+    @Results({@Result(column ="department_id",property = "department",one = @One(select = "selectDepartment"))})
     Staff selectStaff(@Param("id") int staffId);
 
     /**
@@ -91,7 +91,9 @@ public interface PersonnelMapper {
      * @return
      * @date        2019/4/17 11:38
      */
-    List<Department> selectDepartments(Department department,int currentPage,int pageSize);
+    @Select("select * from department")
+    @Results({@Result(column = "id",property = "id")})
+    List<Department> selectDepartments();
 
     /**
      * 方法实现说明
@@ -100,6 +102,16 @@ public interface PersonnelMapper {
      * @date        2019/4/17 11:38
      */
     @Select("select * from department where id = #{id}")
+    @Results({@Result(column = "id",property = "staffs",one = @One(select = "selectStaffsByDepartmentId"))})
     Department selectDepartment(@Param("id") int departmentId);
 
+
+    /**
+     * 方法实现说明    根据部门编号获得多条员工信息
+     * @author      HiFiYi
+     * @return
+     * @date        2019/4/17 11:39
+     */
+    @Select("select * from staff where department_id=#{id}")
+    List<Staff> selectStaffsByDepartmentId (@Param("id") int departmentId);
 }

@@ -53,13 +53,13 @@ public interface MemberMapper {
     * @return
     * @date        2019/4/17 9:15
     */
-    @Select("select * from member_card where id=#{memberId}")
-    @Results({@Result(column ="coach",property = "coach",one = @One(select = "com.newer.gym.repository.AnalysisMapper.getStaff")),
-              @Result(column = "counselor",property = "counselor",one = @One(select = "com.newer.gym.repository.AnalysisMapper.getStaff")),
-              @Result(column = "wardrobe_id",property = "wardrobe",one = @One(select = "com.newer.gym.repository.WardrobeMapper.getWardrobe")),
+    @Select("select * from member_card where id=#{id}")
+    @Results({@Result(column ="coach",property = "coach",one = @One(select = "com.newer.gym.repository.PersonnelMapper.selectStaff")),
+              @Result(column = "counselor",property = "counselor",one = @One(select = "com.newer.gym.repository.PersonnelMapper.selectStaff")),
+              //@Result(column = "wardrobe_id",property = "wardrobe",one = @One(select = "com.newer.gym.repository.WardrobeMapper.getWardrobe")),
               @Result(column = "opentime",property = "openTime"),@Result(column = "closetime",property = "closeTime"),
-              @Result(column = "idcard",property = "idCard"),@Result(column = "cardtype_id",property = "cardTppe",one = @One(select = "selectCardType"))})
-    Member selectMember(int memberId);
+              @Result(column = "idcard",property = "idCard"),@Result(column = "cardtype_id",property = "cardType",one = @One(select = "selectCardType"))})
+    Member selectMember(@Param("id") int memberId);
 
     /**
     * 方法实现说明    分页
@@ -75,7 +75,7 @@ public interface MemberMapper {
     * @author      HiFiYi
     * @date        2019/4/17 9:22
     */
-    @Insert("insert into member_get(member_cardid,time,remark) values (#{member.id},#{time},#{remark})")
+    @Insert("insert into member_get(member_cardid,remark) values (#{member.id},#{remark})")
     void insertMemberGet(MemberGet memberGet);
 
     /**
@@ -107,7 +107,7 @@ public interface MemberMapper {
     * @author      HiFiYi
     * @date        2019/4/17 9:25
     */
-    @Update("update card_type set name=#{name},price=#{price},remark=#{remark} ")
+    @Update("update card_type set name=#{name},price=#{price},remark=#{remark} where id=#{id} ")
     void updateCardType(CardType cardType);
 
     /**
@@ -124,7 +124,8 @@ public interface MemberMapper {
      * @return      会员卡类型实体的集合
      * @date        2019/4/17 9:25
      */
-    List<CardType> selectCardTypes(CardType cardType, int currentPage, int pageSize);
+    @Select("select * from card_type")
+    List<CardType> selectCardTypes();
 
     /**
     * 方法实现说明    获得单个会员卡类型信息

@@ -52,7 +52,7 @@ public interface MemberService {
     void removeCardType(int cardTypeId);
 
 
-    List<CardType> getCardTypes(CardType cardType,int currentPage,int pageSize);
+    List<CardType> getCardTypes();
 
 
     CardType getCardType(int cardTypeId);

@@ -58,12 +58,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Category> getCategorys(Category category, int currentPage, int pageSize) {
-        return null;
+    public List<Category> getCategorys() {
+        List<Category> list=productMapper.selectCategorys();
+        for (Category c:list){
+            c.setProducts(productMapper.selectProductByCategoryId(c.getId()));
+        }
+        return list;
     }
 
     @Override
     public Category getCategory(int categoryId) {
-        return productMapper.selectCategory(categoryId);
+        Category category=productMapper.selectCategory(categoryId);
+        category.setProducts(productMapper.selectProductByCategoryId(categoryId));
+        return category;
     }
+
+
 }
