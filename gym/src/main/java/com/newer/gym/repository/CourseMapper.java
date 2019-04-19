@@ -22,7 +22,7 @@ public interface CourseMapper {
      * @author pjun
      * @date 2019-04-18 16:52
      */
-    @Select("insert into ")
+    @Select("insert into course_instruction() values()")
     public void addCourseInstruction(CourseInstruction ci);
 
     /**
@@ -48,13 +48,24 @@ public interface CourseMapper {
     public void deleteCourseInstruction(int id);
 
     /**
-    * 获得所有课程介绍信息
-    * @author      pjun
-    * @param
-    * @return
-    * @exception
-    * @date        2019-04-18 16:58
-    */
+     * 获得所有课程介绍信息
+     *
+     * @param
+     * @return
+     * @throws
+     * @author pjun
+     * @date 2019-04-18 16:58
+     */
     public List<CourseInstruction> selectCourseInstructions();
 
+    /**
+     * 根据id查询
+     *
+     * @param
+     * @return
+     * @throws
+     * @author pjun
+     * @date 2019-04-19 9:06
+     */
+    public CourseInstruction selectCourseInstruction(int CourseInstructionId);
 }
