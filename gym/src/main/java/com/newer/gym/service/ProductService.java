@@ -1,6 +1,7 @@
 package com.newer.gym.service;
 
 import com.newer.gym.bean.Category;
+import com.newer.gym.bean.PageBean;
 import com.newer.gym.bean.Product;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface ProductService {
     void removeProduct (int productId);
 
 
-    List<Product> getProducts(Product product, int currentPage, int pageSize);
+    PageBean<Product> getProducts(int categoryId, int currentPage, int pageSize);
 
 
     Product getProduct (int productId);

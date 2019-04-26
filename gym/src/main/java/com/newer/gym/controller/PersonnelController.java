@@ -1,15 +1,17 @@
 package com.newer.gym.controller;
 
 import com.newer.gym.bean.Department;
+import com.newer.gym.bean.Member;
+import com.newer.gym.bean.PageBean;
 import com.newer.gym.bean.Staff;
 import com.newer.gym.service.PersonnelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
 * @Description:    人事控制器    为外部服务器提供数据交互接口
@@ -37,10 +39,26 @@ public class PersonnelController{
         personnelService.removeStaff(staffId);
     }
 
-    @GetMapping("/personnel/getStaffs")
-    public List<Staff> getStaffs(@RequestBody Staff staff, int currentPage, int pageSize) {
-        return personnelService.getStaffs(staff,currentPage,pageSize);
+    @RequestMapping("/personnel/getStaffs")
+    public PageBean<Staff> getStaffs(@RequestParam Map<String, String> map,
+                                     @RequestParam(defaultValue = "1") int currentPage ,
+                                     @RequestParam(defaultValue = "10")int pageSize) {
+        Map<String,Object> map1=new HashMap<>();
+        for (String key : map.keySet()) {
+            System.out.println(map.get(key)=="");
+            map1.put(key,map.get(key).toString());
+        }
+        return personnelService.getStaffs(map1,currentPage,pageSize);
     }
+    @GetMapping("/personnel/getCoachs")
+    public List<Staff> getCoachs(){
+        return personnelService.getStaffsByDepartmentId(1);
+    };
+
+    @GetMapping("/personnel/getCounselors")
+    public List<Staff> getCounselors(){
+        return personnelService.getStaffsByDepartmentId(3);
+    };
 
     @GetMapping("/personnel/getStaff")
     public Staff getStaff(int staffId) {

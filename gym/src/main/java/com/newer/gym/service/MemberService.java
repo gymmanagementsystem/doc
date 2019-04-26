@@ -1,12 +1,10 @@
 package com.newer.gym.service;
 
-import com.newer.gym.bean.CardType;
-import com.newer.gym.bean.Experience;
-import com.newer.gym.bean.Member;
-import com.newer.gym.bean.MemberGet;
+import com.newer.gym.bean.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
 * @Description:    会员数据服务接口
@@ -15,7 +13,7 @@ import java.util.List;
 */
 @Service
 public interface MemberService {
-    void addMember(Member member);
+    void addMember(Map<String,String> member);
 
 
     void editorMember(Member member);
@@ -24,8 +22,9 @@ public interface MemberService {
     void removeMember(int memberId);
 
 
-    List<Member> getMembers(Member member, int currentPage, int pageSize);
+    PageBean<Member> getMembers(Member member, int currentPage, int pageSize);
 
+    PageBean<Member> getAllMembers(int currentPage, int pageSize);
 
     Member getMember(int memberId);
 
@@ -33,15 +32,15 @@ public interface MemberService {
     void addMemberGet(MemberGet memberGet);
 
 
-    List<MemberGet> getMemberGets(MemberGet memberGet,int curremtPage,int pageSize);
+    PageBean<MemberGet> getMemberGets(MemberGet memberGet,int curremtPage,int pageSize);
 
 
     void addExperience (Experience experience);
 
 
-    List<Experience> getExperiences(Experience experience,int curremtPage,int pageSize);
+    PageBean<Experience> getExperiences(Experience experience,int curremtPage,int pageSize);
 
-
+    int getMembersCount();
 
     void addCardType(CardType cardType);
 

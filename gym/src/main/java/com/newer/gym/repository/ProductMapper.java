@@ -45,8 +45,15 @@ public interface ProductMapper {
      * @return
      * @date        2019/4/17 14:14
      */
-    List<Product> selectProducts (Product product, int currentPage, int pageSize);
+    @Select("select * from product")
+    @Results({@Result(column ="category_id",property = "category",one = @One(select = "selectCategory"))})
+    List<Product> selectProducts();
 
+    @Select("select count(*) from product")
+    int selectProductCount();
+
+    @Select("select count(*) from product where category_id=#{id}")
+    int selectProductCountByCategory(@Param("id") int category_id);
     /**
      * 方法实现说明
      * @author      HiFiYi

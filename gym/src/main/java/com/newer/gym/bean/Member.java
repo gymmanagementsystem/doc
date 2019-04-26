@@ -11,7 +11,7 @@ public class Member {
     private int id;                 // 会员卡号     --id
     private String name;            // 会员姓名     --name
     private CardType cardType;      // 会员卡类型   --cardType_id
-    private int sex;                // 性别         --sex
+    private Integer sex;                // 性别         --sex
     private Date openTime;          // 开卡时间     --openTime
     private Date closeTime;         // 到期时间     --closeTime
     private double balance;         // 会员卡余额   --balance
@@ -54,7 +54,7 @@ public class Member {
     }
 
     public Member(int id, String name, CardType cardType,
-                  int sex, Date openTime, Date closeTime,
+                  Integer sex, Date openTime, Date closeTime,
                   double balance, String tel, int state,
                   Date birthday, Staff coach, Wardrobe wardrobe,
                   Staff counselor, int identify, String idCard,
@@ -102,11 +102,11 @@ public class Member {
         this.cardType = cardType;
     }
 
-    public int getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 

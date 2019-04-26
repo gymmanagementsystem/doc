@@ -5,7 +5,7 @@ package com.newer.gym.bean;
  * @Description:  会员卡类型实体
  */
 public class CardType {
-    private int id;        //会员卡类型编号 int
+    private Integer id;        //会员卡类型编号 int
     private String name;   // 会员卡类型名称varchar
     private double price; //会员卡价格	double
     private String remark; //会员卡备注	text

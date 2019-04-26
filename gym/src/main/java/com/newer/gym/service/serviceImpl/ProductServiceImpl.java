@@ -1,6 +1,9 @@
 package com.newer.gym.service.serviceImpl;
 
+import com.github.pagehelper.PageHelper;
 import com.newer.gym.bean.Category;
+import com.newer.gym.bean.Member;
+import com.newer.gym.bean.PageBean;
 import com.newer.gym.bean.Product;
 import com.newer.gym.repository.ProductMapper;
 import com.newer.gym.service.ProductService;
@@ -33,8 +36,21 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProducts(Product product, int currentPage, int pageSize) {
-        return null;
+    public PageBean<Product> getProducts(int categoryId, int currentPage, int pageSize) {
+
+       PageHelper.startPage(currentPage,pageSize);
+        List<Product> products;
+        int countProduct;
+        if(categoryId == 0){
+            products= productMapper.selectProducts();
+            countProduct=productMapper.selectProductCount();
+        }else{
+            products=productMapper.selectProductByCategoryId(categoryId);
+            countProduct=productMapper.selectProductCountByCategory(categoryId);
+        }
+        PageBean<Product> pg=new PageBean<Product>(currentPage,pageSize,countProduct);
+        pg.setItems(products);
+        return pg;
     }
 
     @Override

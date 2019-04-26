@@ -2,24 +2,36 @@ package com.newer.gym.controller;
 
 import com.newer.gym.bean.Category;
 import com.newer.gym.bean.Member;
+import com.newer.gym.bean.PageBean;
 import com.newer.gym.bean.Product;
 import com.newer.gym.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+
 /**
 * @Description:    商品控制器    为外部服务器提供数据交互接口
 * @Author:         HiFiYi
 * @CreateDate:     2019/4/17 15:14
 */
-@Controller("/product/1")
+@RestController
+@CrossOrigin
 public class ProductController {
     @Autowired
     ProductService productService;
+    @PostMapping("/product/addProduct")
+    public void addProduct(@RequestParam Map map) {
+        for (Object key : map.keySet()) {
+            System.out.println(key + " ：" + map.get(key));
+        }
+        System.out.println(map.size());
 
-    public void addProduct(Product product) {
-        productService.addProduct(product);
+
+        Product product=null;
+       // productService.addProduct(product);
     }
 
 
@@ -27,14 +39,15 @@ public class ProductController {
         productService.editorProduct(product);
     }
 
-
-    public void removeProduct(int productId) {
+    @GetMapping("/product/removeProduct")
+    public void removeProduct(@RequestParam int productId) {
         productService.removeProduct(productId);
     }
 
+    @GetMapping("/product/getProducts")
+    public PageBean<Product> getProducts(@RequestParam(defaultValue = "0") int categoryId, @RequestParam(defaultValue = "1")int currentPage, @RequestParam(defaultValue = "5") int pageSize) {
 
-    public List<Product> getProducts(Product product, int currentPage, int pageSize) {
-        return productService.getProducts(product,currentPage,pageSize);
+        return productService.getProducts(categoryId,currentPage,pageSize);
     }
 
 

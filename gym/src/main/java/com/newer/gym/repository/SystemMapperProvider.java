@@ -1,12 +1,8 @@
 package com.newer.gym.repository;
 
-import com.newer.gym.bean.Admin;
-import com.newer.gym.bean.Logger;
-import com.newer.gym.bean.Member;
-import com.newer.gym.bean.Notice;
+
 import org.apache.ibatis.jdbc.SQL;
 
-import java.sql.Date;
 import java.util.Map;
 
 public class SystemMapperProvider {
@@ -58,7 +54,6 @@ public class SystemMapperProvider {
                 }
             }
         }.toString();
-        System.out.println("查询符合条件的数量的sql语句为:" + sql);
         return sql;
     }
 
@@ -87,7 +82,6 @@ public class SystemMapperProvider {
                 }
             }
         }.toString();
-        System.out.println("查询符合条件的数量的sql语句为:" + sql);
         return sql;
     }
 
@@ -116,7 +110,6 @@ public class SystemMapperProvider {
                 }
             }
         }.toString();
-        System.out.println("查询符合条件的数量的sql语句为:" + sql);
         return sql;
     }
 }

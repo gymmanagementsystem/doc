@@ -1,9 +1,11 @@
 package com.newer.gym.service;
 
 import com.newer.gym.bean.Department;
+import com.newer.gym.bean.PageBean;
 import com.newer.gym.bean.Staff;
 
 import java.util.List;
+import java.util.Map;
 
 /**
 * @Description:    人事数据服务接口
@@ -21,11 +23,12 @@ public interface PersonnelService {
     void removeStaff (int staffId);
 
 
-    List<Staff> getStaffs (Staff staff, int currentPage, int pageSize);
+    PageBean<Staff> getStaffs (Map<String,Object> map, int currentPage, int pageSize);
 
 
     Staff getStaff (int staffId);
 
+    List<Staff> getStaffsByDepartmentId(int departmentId);
 
     void addDepartment (Department department);
 

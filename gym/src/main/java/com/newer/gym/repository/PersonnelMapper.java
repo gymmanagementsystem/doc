@@ -5,6 +5,7 @@ import com.newer.gym.bean.Staff;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
 * @Description:    人事数据操作类
@@ -59,7 +60,24 @@ public interface PersonnelMapper {
     * @return
     * @date        2019/4/17 11:38
     */
-    List<Staff> selectStaffs (Staff staff, int currentPage, int pageSize);
+//    @Select("select * from staff")
+//    @Results({@Result(column ="department_id",property = "department",one = @One(select = "selectDepartmentById"))})
+//    List<Staff> selectStaffs ();
+//    @Select("select * from department where id = #{id}")
+//    Department selectDepartmentById(@Param("id") int departmentId);
+//    @Select("select count(*) from staff")
+//    int selectStaffsCount();
+//
+//    @Select("select * from staff where depardment_id=#{id}")
+//    List<Staff> getStaffByDepartmentId(@Param("id") int department_id);
+    @SelectProvider(method = "selectStaffs",type = PersonnelMapperProvider.class)
+    @Results({@Result(column = "department_id",property = "department",one = @One(select = "selectDepartmentById"))})
+    List<Staff> selectStaffs(Map<String,Object> map);
+    @Select("select * from department where id = #{id}")
+    Department selectDepartmentById(@Param("id") int departmentId);
+    @SelectProvider(method = "selectStaffsCount",type = PersonnelMapperProvider.class)
+    int selectStaffsCount(Map<String,Object> map);
+
 
     /**
      * 方法实现说明   插入一条部门信息

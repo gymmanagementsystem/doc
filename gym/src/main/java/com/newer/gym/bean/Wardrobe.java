@@ -11,7 +11,6 @@ public class Wardrobe {
     private int id;             // 编号
     private int state;          // 使用状态 0、未使用 1、正在使用
     private Member member;      // 使用该衣柜的会员
-    private Date startTime;     // 会员开始使用衣柜的时间
     private double cost;        // 费用
     private String position;    // 衣柜所在的位置
     private String remark;      // 备注
@@ -22,7 +21,6 @@ public class Wardrobe {
                 "id=" + id +
                 ", state=" + state +
                 ", member=" + member +
-                ", startTime=" + startTime +
                 ", cost=" + cost +
                 ", position='" + position + '\'' +
                 ", remark='" + remark + '\'' +
@@ -33,11 +31,10 @@ public class Wardrobe {
         super();
     }
 
-    public Wardrobe(int id, int state, Member member, Date startTime, double cost, String position, String remark) {
+    public Wardrobe(int id, int state, Member member,  double cost, String position, String remark) {
         this.id = id;
         this.state = state;
         this.member = member;
-        this.startTime = startTime;
         this.cost = cost;
         this.position = position;
         this.remark = remark;
@@ -65,14 +62,6 @@ public class Wardrobe {
 
     public void setMember(Member member) {
         this.member = member;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
     }
 
     public double getCost() {

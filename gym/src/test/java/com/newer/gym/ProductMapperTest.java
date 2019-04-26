@@ -20,7 +20,7 @@ public class ProductMapperTest {
     @Test   //添加一条商品数据
     public void addProduct( ) {
         Category category=productService.getCategory(2);
-        Product product=new Product(1,"哇哈哈矿泉水","暂无",2,200,category,"无");
+        Product product=new Product(1,"蛋白粉","暂无",2,200,category,"无");
         for(int i=0;i<4;i++){
             productService.addProduct(product);
         }
@@ -40,7 +40,7 @@ public class ProductMapperTest {
 
     @Test
     public void getProducts( ) {
-
+        productService.getProducts(0,1,2);
     }
 
     @Test   //获得一条商品信息
